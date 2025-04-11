@@ -11,7 +11,7 @@ export const AppNavigation = () => {
 
   return (
     <RootStack.Navigator
-      initialRouteName='paymentServices'
+      initialRouteName='HomeTabs'
       screenOptions={rootStackOptions}>
       <RootStack.Screen
         name='HomeTabs'

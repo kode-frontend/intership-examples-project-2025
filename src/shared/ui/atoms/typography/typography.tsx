@@ -25,6 +25,7 @@ type Props = {
   align?: TTypographyAlignment
   variant?: TypographyVariants
   style?: StyleProp<TextStyle>
+  numberOfLines?: number
 }
 
 export const Typography = ({
@@ -32,9 +33,15 @@ export const Typography = ({
   align,
   style,
   children,
+
+  numberOfLines,
 }: Props) => {
   return (
-    <TextVariant $align={align} $variant={variant} style={style}>
+    <TextVariant
+      $align={align}
+      $variant={variant}
+      style={style}
+      numberOfLines={numberOfLines}>
       {children}
     </TextVariant>
   )
