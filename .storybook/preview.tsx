@@ -1,4 +1,21 @@
-import type { Preview } from '@storybook/react';
+import React from 'react'
+import type { Preview } from '@storybook/react'
+import { View } from 'react-native'
+
+import { darkTheme } from '../src/shared/ui/theme/dark'
+
+export const decorators = [
+  Story => (
+    <View
+      style={{
+        flex: 1,
+        // @ts-ignore
+        backgroundColor: darkTheme.palette.background.primary,
+      }}>
+      <Story />
+    </View>
+  ),
+]
 
 const preview: Preview = {
   parameters: {
@@ -9,6 +26,6 @@ const preview: Preview = {
       },
     },
   },
-};
+}
 
-export default preview;
+export default preview
