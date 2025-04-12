@@ -3,6 +3,7 @@ import { useTheme } from '@shared/ui/theme'
 import { DepositInfo } from './molecules/deposit-info'
 import { Accounts, Deposits } from './organisms'
 import { HomePageTemplate } from './templates/home-page-template/home-page-template'
+import { PrimaryButton } from '@shared/ui/molecules'
 
 export const HomeMain = () => {
   const theme = useTheme()
@@ -11,6 +12,7 @@ export const HomeMain = () => {
     <HomePageTemplate
       refetch={() => null}
       isLoading={false}
+      buttonSlot={<PrimaryButton>Открыть новый счет или продукт</PrimaryButton>}
       accountsSlot={
         <Accounts
           accounts={[
