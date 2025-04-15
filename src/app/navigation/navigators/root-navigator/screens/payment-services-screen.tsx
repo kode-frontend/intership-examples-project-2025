@@ -2,7 +2,7 @@ import {PaymentServicesConnector} from '@screens/payment-services';
 import {StackScreenProps} from '@react-navigation/stack';
 import {RootStackParamsList} from '@app/navigation/navigators/root-navigator/types';
 
-type Props = StackScreenProps<
+export type Props = StackScreenProps<
     RootStackParamsList,
     'paymentServices'
 >;
