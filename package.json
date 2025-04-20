@@ -7,7 +7,9 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "storybook-generate": "sb-rn-get-stories"
+    "storybook-generate": "sb-rn-get-stories",
+    "openapi-yaml-to-json": "js-yaml ./openapi/bank-auth-openapi.yaml > ./openapi/bank-auth-openapi.json && js-yaml ./openapi/bank-core-openapi.yaml > ./openapi/bank-core-openapi.json",
+    "api:update": "yarn openapi-yaml-to-json  && rm -rf /src/shared/api/axios-client && openapi-generator-cli generate"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "1.23.1",
@@ -35,6 +37,8 @@
     "zod": "^3.24.2"
   },
   "devDependencies": {
+    "@openapitools/openapi-generator-cli": "^2.9.0",
+    "js-yaml": "^4.1.0",
     "@babel/core": "^7.25.2",
     "@gorhom/bottom-sheet": "^5.1.1",
     "@kode-frontend/commitlint-config": "^0.0.3",

@@ -1,3 +1,4 @@
+import { useOtp } from '@entities/otp/hooks'
 import { StackScreenProps } from '@react-navigation/stack'
 import { RootStackParamsList } from '@routing/app-navigation/types'
 import { darkTheme } from '@shared/ui/theme'
@@ -19,6 +20,7 @@ export type TPaymentCreateProps = StackScreenProps<
 
 export const PaymentCreate = ({ navigation }: TPaymentCreateProps) => {
   const [switchValue, setSwitchValue] = useState(false)
+  const { mutate, isPending } = useOtp()
 
   const onBack = () => {
     navigation.goBack()
@@ -36,6 +38,35 @@ export const PaymentCreate = ({ navigation }: TPaymentCreateProps) => {
     }
 
     Linking.openURL(link).catch(handleFallback)
+  }
+
+  const onSubmit = () => {
+    mutate(
+      {
+        postApiCoreOtpRequest: {
+          operation: 'PAYMENT',
+        },
+      },
+      {
+        onSuccess: data => {
+          if (data?.data) {
+            navigation.navigate('PaymentOtp', {
+              otpId: data?.data.otpId,
+              otpLength: data?.data.otpLen,
+              resendIn: data?.data.resendIn,
+            })
+          }
+        },
+        onError: (e: any) => {
+          if (e.code !== 'GLOBAL_ERROR') {
+            console.log('e.code', e.code)
+            // showErrorToast({ message: 'Не удалось отправить СМС' })
+          }
+        },
+      },
+    )
+
+    // showToast({ message: 'Оплата прошла успешно' });
   }
 
   const onValueChange = (value: boolean) => {
@@ -71,6 +102,9 @@ export const PaymentCreate = ({ navigation }: TPaymentCreateProps) => {
 
       <TouchableOpacity onPress={openLink} style={styles.textButton}>
         <Text>Перейти по ссылке</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={onSubmit} style={styles.textButton}>
+        <Text>Переход к ОТП</Text>
       </TouchableOpacity>
 
       <Switch value={switchValue} onValueChange={onValueChange} />

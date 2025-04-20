@@ -1,7 +1,12 @@
-import { HomeTabsParamsList } from "@routing/home-tabs-navigation";
+import { HomeTabsParamsList } from '@routing/home-tabs-navigation'
 
 export type RootStackParamsList = {
-    HomeTabs: HomeTabsParamsList
-    paymentServices: undefined
-    paymentCreate: { serviceId: string; title: string }
-};
+  HomeTabs: HomeTabsParamsList
+  paymentServices: undefined
+  paymentCreate: { serviceId: string; title: string }
+  PaymentOtp: {
+    otpLength: number
+    resendIn: number
+    otpId: string
+  }
+}

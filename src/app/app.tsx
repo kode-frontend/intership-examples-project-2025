@@ -5,6 +5,10 @@ import { Providers } from './providers'
 import { Storybook } from '../../.storybook'
 import { NavigationContainer } from '@react-navigation/native'
 import { AppNavigation } from '@routing/app-navigation'
+import { QueryClientProvider } from '@tanstack/react-query'
+import { GlobalErrorHandlingProvider } from './global-errors-handling-provider'
+import { queryClient } from '@shared/api/query-client'
+import { apiAxiosInstance } from '@shared/api'
 
 export const App = () => {
   const [isStorybookVisible, setIsStorybookVisible] = useState(true)
@@ -26,7 +30,11 @@ export const App = () => {
   return (
     <Providers>
       <NavigationContainer>
-        <AppNavigation />
+        <QueryClientProvider client={queryClient}>
+          <GlobalErrorHandlingProvider axiosInstance={apiAxiosInstance}>
+            <AppNavigation />
+          </GlobalErrorHandlingProvider>
+        </QueryClientProvider>
       </NavigationContainer>
     </Providers>
   )
