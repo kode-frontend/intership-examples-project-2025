@@ -3,6 +3,7 @@ import { RootStackParamsList } from './types'
 import { PaymentCreate, PaymentServices } from '@screens/payment'
 import { rootStackOptions } from './config'
 import { HomeTabsNavigation } from '@routing/home-tabs-navigation'
+import { OtpConnector } from '@features/otp'
 
 const RootStack = createStackNavigator<RootStackParamsList>()
 
@@ -27,6 +28,14 @@ export const AppNavigation = () => {
         name='paymentCreate'
         component={PaymentCreate}
         options={({ route }) => ({ headerTitle: route.params.title })}
+      />
+      <RootStack.Screen
+        options={({ route }) => ({
+          title: 'Подтвердить СМС',
+          // presentation: 'transparentModal',
+        })}
+        name='PaymentOtp'
+        component={OtpConnector}
       />
     </RootStack.Navigator>
   )
