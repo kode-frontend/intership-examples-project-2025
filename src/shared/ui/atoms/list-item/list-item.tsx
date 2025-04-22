@@ -1,8 +1,8 @@
 import { useCallback } from 'react';
-import { Typography } from '@components/typography';
-import { Icon, TIconProps } from '@components/icon';
-import { Pressable } from '@components/pressable';
 import styled from 'styled-components/native';
+import { Pressable } from '../pressable';
+import { Typography } from '../typography';
+import {Icon, TIconProps} from "@shared/ui/atoms/icon";
 
 export type TListItem = TIconProps & {
   label: string;

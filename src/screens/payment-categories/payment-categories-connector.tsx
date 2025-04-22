@@ -7,7 +7,7 @@ type Props = {
 
 export const PaymentCategoriesConnector = ({ onCategorySelect }: Props) => {
   const handleSelect = (item: TListItem) => {
-    onCategorySelect(item.id, item.title);
+    onCategorySelect(item.id, item.label);
   };
 
   return <PaymentCategories onSelect={handleSelect} />;
