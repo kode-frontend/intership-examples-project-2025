@@ -1,13 +1,13 @@
-import { FlatList, ListRenderItem, RefreshControl } from 'react-native';
+import {FlatList, ListRenderItem, RefreshControl} from 'react-native';
 
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 
-import { darkTheme } from '@theme/dark';
-
-import { ListItem, TListItem } from '@components/list-item';
-import { Separator } from '@components/separator';
-import { LoadingList } from '@components/loading-list';
-import { ErrorScreen } from '@components/error-screen';
+import {ListItem, TListItem } from '../list-item';
+import { Separator } from '../separator';
+import { ErrorScreen } from '../error-screen';
+import { LoadingList } from '../loading-list';
+import {darkTheme} from "@shared/ui/theme";
+import * as React from "react";
 
 const StyledList = styled(FlatList<TListItem>)`
   background-color: ${({ theme }) => theme.palette.background.secondary};
