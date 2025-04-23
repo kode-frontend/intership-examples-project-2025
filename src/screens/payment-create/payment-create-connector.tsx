@@ -71,7 +71,7 @@ export const PaymentCreateConnector = ({}: Props) => {
     const stringValue = moneyString(numberValue)
 
     setValue('money', stringValue)
-  }, [])
+  }, [moneyValue])
 
   return (
     <FormProvider {...form}>

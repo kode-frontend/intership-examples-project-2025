@@ -15,3 +15,7 @@ export type UIData = {
 export type TPaymentServicesForm = {
     search: string
 }
+
+export type TPaymentServicesForm = {
+    search: string
+}
