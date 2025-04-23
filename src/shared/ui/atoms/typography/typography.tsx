@@ -1,4 +1,4 @@
-import { styled } from '@shared/ui/theme'
+import { styled, useTheme } from '@shared/ui/theme'
 import { TypographyVariants } from '@shared/ui/theme/types'
 import React, { ReactNode } from 'react'
 import { StyleProp, TextStyle } from 'react-native'
@@ -8,6 +8,7 @@ type TTypographyAlignment = 'center' | 'left' | 'right'
 const TextVariant = styled.Text<{
   $variant: TypographyVariants
   $align?: TTypographyAlignment
+  color?: string
 }>`
   font-family: ${({ theme, $variant }) =>
     theme.typography[$variant].fontFamily};
@@ -16,7 +17,7 @@ const TextVariant = styled.Text<{
     theme.typography[$variant].letterSpacing};
   line-height: ${({ theme, $variant }) =>
     theme.typography[$variant].lineHeight};
-  color: ${({ theme }) => theme.palette.text.primary};
+  color: ${({ color }) => color};
   ${({ $align }) => $align && `text-align: ${$align};`}
 `
 
@@ -26,6 +27,7 @@ type Props = {
   variant?: TypographyVariants
   style?: StyleProp<TextStyle>
   numberOfLines?: number
+  color?: string
 }
 
 export const Typography = ({
@@ -33,15 +35,16 @@ export const Typography = ({
   align,
   style,
   children,
-
   numberOfLines,
+  color,
 }: Props) => {
+  const theme = useTheme()
   return (
     <TextVariant
       $align={align}
       $variant={variant}
-      style={style}
-      numberOfLines={numberOfLines}>
+      color={color ?? theme.palette.text.primary}
+      style={style}>
       {children}
     </TextVariant>
   )

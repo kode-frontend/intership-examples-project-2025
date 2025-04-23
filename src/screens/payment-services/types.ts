@@ -11,3 +11,7 @@ export type UIData = {
     title: string;
     icon: ReactNode;
 }
+
+export type TPaymentServicesForm = {
+    search: string
+}
